@@ -4,6 +4,6 @@
 
 <ul>
   <% @cats.each do |cat| %>
-    <li><%= cat.name %> -<a href="<%= cat_url(cat.id) %>">Show <%= cat.name %>'s Page</a>-</li>
+    <li><%= cat.name %> - <%= link_to("#{cat.name}'s Page", cat_url(cat) ) %> -</li>
   <% end %>
 </ul>
