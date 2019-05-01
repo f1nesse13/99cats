@@ -1,6 +1,6 @@
 class Cat < ApplicationRecord
   COLORS = [
-    "Grey", "Black", "White", "Orange",
+    "Grey", "Black", "White", "Orange", "Brown"
   ]
   validates :birth_date, :name, :description, presence: true
   validates :color, presence: true, inclusion: COLORS
