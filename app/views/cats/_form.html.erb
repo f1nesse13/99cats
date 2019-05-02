@@ -5,33 +5,37 @@
 <% if action == :edit %>
   <input type="hidden" name="_method" value="PATCH">
 <% end %>
+
   <label for="name_field">Name</label>
     <input type="text" id="name_field" name="cat[name]" value="<%= selected_cat.name %>">
   <br>
+
   <label for="date_field">Date of Birth</label>
     <input type="date" id="date_field" name="cat[birth_date]" value="<%= selected_cat.birth_date %>">
   <br>
+
   <label for="color_field">Color</label>
     <select name="cat[color]" id="color_field">
       <option disabled <%= selected_cat.color ? "" : "selected" %>>--Select Color--</option>
-      <option value="Black" <%= selected_cat.color == "Black" ? "selected" : "" %>>Black</option>
-      <option value="White" <%= selected_cat.color == "White" ? "selected" : "" %>>White</option>
-      <option value="Brown" <%= selected_cat.color == "Brown" ? "selected" : "" %>>Orange</option>
-      <option value="Grey" <%= selected_cat.color == "Grey" ? "selected" : "" %>>Grey</option>
-      <option value="Orange" <%= selected_cat.color == "Orange" ? "selected": "" %>>Grey</option>
+      <% Cat::COLORS.each do |color| %>
+        <option value="<%= color %>" <%= selected_cat.color == color ? "selected" : "" %>><%= color %></option>
+      <% end %>
     </select>
   <br>
+
   <label>Sex</label>
     <div>
-      <input type="radio" id="male_field" name="cat[sex]" value="M" <%= selected_cat.sex == "M" ? "selected" : "" %>>
+      <input type="radio" id="male_field" name="cat[sex]" value="M" <%= selected_cat.sex == "M" ? "checked" : "" %>>
       <label for="male_field">Male</label>
-      <input type="radio" id="female_field" name="cat[sex]" value="F" <%= selected_cat.sex == "F" ? "selected" : "" %>>
+      <input type="radio" id="female_field" name="cat[sex]" value="F" <%= selected_cat.sex == "F" ? "checked" : "" %>>
       <label for="female_field">Female</label>  
     </div>
   <br>
+
   <label for="description_field">Description</label>
-    <textarea name="cat[description]" id="description_field" cols="30" rows="10">
+    <textarea name="cat[description]" id="description_field">
     <%= selected_cat.description %> </textarea>
 <br>
+
     <input type="submit" value="<%= submit_text %>">
 </form>
