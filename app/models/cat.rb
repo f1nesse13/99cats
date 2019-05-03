@@ -19,4 +19,8 @@ class Cat < ApplicationRecord
       bday.mon > today.mon ? ((today.year - bday.year) - 1) : (today.year - bday.year)
     end
   end
+
+  def ordered_rentals
+    self.rental_requests.order(:start_date)
+  end
 end

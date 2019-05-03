@@ -25,5 +25,16 @@
         <%= @show_cat.description %>
       </td>
     </tr>
+    <tr>
+    
+      <% @cat_requests.each do |cat_rental| %>
+        <td>Start Date: <%= cat_rental.start_date %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <% @cat_requests.each do |cat_rental| %>
+        <td>End Date: <%= cat_rental.end_date %></td>
+      <% end %>
+    </tr>
   </tbody>
 </table>
