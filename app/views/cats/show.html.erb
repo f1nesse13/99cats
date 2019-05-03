@@ -1,40 +1,59 @@
 <table>
 <thead><tr><th><h1><%= @show_cat.name %></h1></th></tr></thead>
-  <tbody>
-  <tr>
-    <td><h3>Birth Date</h3></td>
-    <td><h3>Age</h3></td>
-    <td><h3>Color</h3></td>
-    <td><h3>Sex</h3></td>
-    <td><h3>Description</h3></td>
-  </tr>
+    <tbody>
     <tr>
-      <td>
-        <%= @show_cat.birth_date %>
-      </td>
-      <td>
-        <%= @show_cat.age %>
-      </td>
-      <td>
-        <%= @show_cat.color %>
-      </td>
-      <td>
-        <%= @show_cat.sex %>
-      </td>
-      <td>
-        <%= @show_cat.description %>
-      </td>
+      <td><h3>Birth Date</h3></td>
+      <td><h3>Age</h3></td>
+      <td><h3>Color</h3></td>
+      <td><h3>Sex</h3></td>
+      <td><h3>Description</h3></td>
     </tr>
-    <tr>
-    
-      <% @cat_requests.each do |cat_rental| %>
-        <td>Start Date: <%= cat_rental.start_date %></td>
-      <% end %>
-    </tr>
-    <tr>
-      <% @cat_requests.each do |cat_rental| %>
-        <td>End Date: <%= cat_rental.end_date %></td>
-      <% end %>
-    </tr>
-  </tbody>
+      <tr>
+        <td>
+          <%= @show_cat.birth_date %>
+        </td>
+        <td>
+          <%= @show_cat.age %>
+        </td>
+        <td>
+          <%= @show_cat.color %>
+        </td>
+        <td>
+          <%= @show_cat.sex %>
+        </td>
+        <td>
+          <%= @show_cat.description %>
+        </td>
+      </tr>
+      <tr>
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        <tr>
+          <h2>Current Rental Requests</h2>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cat_requests.each do |cat_rental| %>
+          <td>Start Date: <%= cat_rental.start_date %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <% @cat_requests.each do |cat_rental| %>
+          <td>End Date: <%= cat_rental.end_date %></td>
+        <% end %>
+      </tr>
+      <tr>
+        <% @cat_requests.each do |cat_rental| %>
+        <td><button><%= link_to("Approve", approve_rental_url(cat_rental.cat_id, rental_id: cat_rental.id), method: :patch) %></button>
+        <button><%= link_to("Deny", deny_rental_url(cat_rental.cat_id, rental_id: cat_rental.id), method: :patch) %></button></td>
+        <% end %>
+      </tr>
+      <tr>
+        <% @cat_requests.each do |cat_rental| %>
+          <td>Current Status: <%= cat_rental.status.titlecase %></td>
+        <% end %>
+      </tr>
+    </tbody>
 </table>

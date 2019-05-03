@@ -36,6 +36,14 @@ class CatRentalRequest < ApplicationRecord
     overlapping_pending_requests.where.not(id: self.id).update_all(status: "DENIED")
   end
 
+  def deny!
+    self.update(status: "DENIED")
+  end
+
+  def pending?
+    self.status == "PENDING"
+  end
+
   # ------------- TESTING PURPOSES ONLY!!! ---------------------------
   def self.reset_to_pending
     CatRentalRequest.update_all(status: "PENDING")
